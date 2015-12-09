@@ -10,6 +10,17 @@
         <button type="button"
         onclick="document.getElementById('demo').innerHTML = 'Hello JavaScript!'">
         Click Me!</button>
+        
+        <p id="democss">JavaScript can change CSS style.</p>
+        <script>
+            function myFunction() {
+            var x = document.getElementById("democss");
+                x.style.fontSize = "25px";           
+                x.style.color = "red"; 
+            }
+        </script>
+
+    <button type="button" onclick="myFunction()">Click Me!</button>
 
 
     </body>
