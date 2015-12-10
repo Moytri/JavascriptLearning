@@ -39,6 +39,9 @@
         document.converter.dollar.value = document.converter.yen.value * 0.0089
         document.converter.pound.value = document.converter.yen.value * 0.00434
         }
+        function reset() {
+         document.getElementById("converter").reset();
+         }
 
         </script>
         
@@ -62,6 +65,10 @@
             </tr>
             <tr>
             <td colspan="2" align="center"><input type="button" value="Convert!" /></td>
+            </tr>
+            
+            <tr>
+            <td colspan="2" align="center"><input type="button" onclick="reset()" value="Reset Me" /></td>
             </tr>
     </table>
     </form>
