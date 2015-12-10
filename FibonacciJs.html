@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Javascript Can play with Fibonacci</title>
+        
+        <script type="text/javascript">
+            function Fibonacci(inNum){
+                if(inNum==0){
+                   var FibonacciNum = 0; 
+                  }
+                else { 
+                    if (inNum == 1) 
+                        FibonacciNum = 1; 
+                    else  { 
+                        // recursive function call 
+                         FibonacciNum = Fibonacci(inNum - 2) + Fibonacci(inNum - 1); 
+                        } 
+                         } 
+                    return FibonacciNum; 
+                 }
+                
+                function showFibonaccis(topFibonacci){
+                    for (var i=0;  i <= topFibonacci ; i++){
+                        document.fibform.fibresult.value=Fibonacci(i);
+                        //topFibonacci--;
+                    }
+                    
+                }
+            
+            function reset() {
+                document.getElementById("fibform").reset();
+            }
+        </script>
+    </head>
+    <body>
+        <form name="fibform">
+            <table border="0" cellspacing="0" cellpadding="5">
+                <tr>
+                    <td>Enter the limit of Fibonacci series: </td>
+                </tr>
+                <tr>
+                     <td><input type="text" name="fiblimit" value="">
+                </tr>
+                <tr>
+                <td>Fibonacci Result :</td>
+                </tr>
+                <tr>
+                    <td><input type="text" name="fibresult" /></td>
+                </tr>
+                
+                 <tr>
+                    <td colspan="2"><input type="button" value="Convert!" onclick="showFibonaccis(fiblimit.value)"/></td>
+                    
+                </tr>
+                <tr>
+                     <td><input type="button" onclick="reset()" value="Reset Me" /></td>
+                </tr>
+                
+            
+            </table> 
+       
+        </form>    
+    </body>
+</html>
