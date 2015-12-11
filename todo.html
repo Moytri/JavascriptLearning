@@ -108,8 +108,25 @@ li > .delete:hover {
     }
     
     $(document).on('click','.delete',deleteItem);
-      	
+    
+    function completed() {
+    if
+    ($(this).parent().css('textDecoration') == 'line-through' )
+    {
+         $(this).parent().css('textDecoration', 'none');
+         $(this).parent().css('opacity', '1');
+    }
 
+    else
+
+    {
+         $(this).parent().css('textDecoration', 'line-through');
+         $(this).parent().css('opacity', '0.50');
+    }
+
+    }
+      	
+   $(document).on('click','.done',completed);
          
      
     
