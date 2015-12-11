@@ -29,6 +29,12 @@ li, h3 {
   clear:both;
   list-style:none;
 }
+        h2{
+font-family:"Times New Roman", Times, serif;
+            font-size:24px}
+         h4{
+font-family:"Times New Roman", Times, serif;
+            }
 input, button {
   outline: none;
 }
@@ -47,6 +53,7 @@ button:hover {
 }
 /* Heading */
 h3{
+   font-family:"Times New Roman", Times, serif;
   color: #333;
   font-weight: 700;
   font-size: 15px;
@@ -56,18 +63,6 @@ h3{
   text-transform: uppercase;
 }
 
-/* New Task */
-label[for='new-task'] {
-  display: block;
-  margin: 0 0 20px;
-}
-input#new-task {
-  float: left;
-  width: 318px;
-}
-p > button:hover {
-  color: #0FC57C;
-}
 
 /* Task list */
 li {
@@ -82,9 +77,9 @@ li > input[type="checkbox"] {
 }
 li > label {
   font-size: 18px;
-  line-height: 40px;
-  width: 237px;
-  padding: 0 0 0 11px;
+  line-height: 50px;
+  width: 250px;
+  padding: 0 0 0 8px;
 }
 li >  input[type="text"] {
   width: 226px;
@@ -97,18 +92,31 @@ li > .delete:hover {
 
 </style>
 <script type="text/javascript">
-  $(document).ready(function() {
-	
-		 $("#add").click(function() {
-			var data=$("#new-task").val();
-			$("#incomplete-tasks").append('<li><label>'+data+'</label>'+' <button>Edit<button>'+' <button>Delete<button>'+'</li>');
+    
+   
+    function addListItem()
+    {	
+        var text=$("#new-task").val();
+         $("#incomplete-tasks").append('<li ><input type="checkbox" class="done"/ ><label>' + text + ' </label><button class="edit">Edit</button><button class="delete">Delete</button></li>');
 			$("#new-task").val('');
-		});
-                
-	});
+
+    }
+    $(document).on('click','#add',addListItem);
+		
+    function deleteItem(){
+        $(this).parent().remove();
+    }
+    
+    $(document).on('click','.delete',deleteItem);
+      	
+
+         
+     
+    
+     
 // function addTask(){
 //     var task=$("#inputtask").val();
-//     $("incomplete-tasks").append('<li><label>'+task+'</label><button>Edit<button><button>Delete<button></li>');
+    //     $("incomplete-tasks").append('<li><label>'+task+'</label><button>Edit</button><button>Delete</button></li>');
 // }
 //   $(function(){
 //       $("#add").on('click',addTask);
@@ -122,9 +130,9 @@ li > .delete:hover {
           <div class="header">
             <h2><center>Do Work List</center></h2>
             <small><center>be better than yesterday</center></small>
-          </div>
+          </div><br><br>
         <div class="form-group">
-            <label for="new-task">Include Task</label>
+            <label for="new-task"><h4>Include Task</h4></label>
             <input type="text" class="form-control" id="new-task" placeholder="Add Task">
        </div>
          
@@ -134,9 +142,15 @@ li > .delete:hover {
        
        <h3>Todo</h3>
         <ul id="incomplete-tasks">
-        <li><label>Pay Bills</label>
-        <button class="edit">Edit</button><button class="delete">Delete</button></li>
-        
+        <li><input type="checkbox" class="done"><label>Pay Bills</label>
+            
+            <button class="edit">Edit</button>
+            <button class="delete">Delete</button></li>
+            
+        <li class="editMode"><input type="checkbox" class="done"><label>Go Shopping</label>
+            
+            <button class="edit">Edit</button>
+            <button class="delete">Delete</button></li>
         
       </ul>
      
