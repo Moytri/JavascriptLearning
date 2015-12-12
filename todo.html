@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html>
     <head>
-    <title></title>
+    <title>To Do List using Jquery</title>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> 
     <style type="text/css">
-    body {
+body {
   background: #fff;
   color: #333;
   font-family: Lato, sans-serif;
@@ -18,7 +19,7 @@
   margin: 100px auto 0;
 }
     
- ul {
+ul {
   margin: 0;
   padding: 0;
 }
@@ -29,10 +30,10 @@ li, h3 {
   clear:both;
   list-style:none;
 }
-        h2{
+h2{
 font-family:"Times New Roman", Times, serif;
             font-size:24px}
-         h4,small{
+h4,small{
 font-family:"Times New Roman", Times, serif;
             }
 input, button {
@@ -94,6 +95,18 @@ li > .delete:hover {
   color: #CF2323;
 }
 
+/* Edit Task */
+ul li input[type=text] {
+  display:none;
+}
+
+ul li.editMode input[type=text] {
+  display:block;
+}
+
+ul li.editMode label {
+  display:none;
+}
 
 /* Completed */
 #completed-tasks label {
@@ -106,8 +119,7 @@ li > .delete:hover {
 </style>
 <script type="text/javascript">
     
-   
-    function addListItem()
+   function addListItem()
     {	
         var text=$("#new-task").val();
         //check for empty value
@@ -155,17 +167,28 @@ li > .delete:hover {
          
        function reset() {
          document.getElementById("new-task").reset();
-         }
+   }
     
-     
-// function addTask(){
-//     var task=$("#inputtask").val();
-    //     $("incomplete-tasks").append('<li><label>'+task+'</label><button>Edit</button><button>Delete</button></li>');
-// }
-//   $(function(){
-//       $("#add").on('click',addTask);
-// });
+   $(document).ready(function(){
+     $('ul').on('click', '.edit',function editItem(){
+		//get parent
+		var parent = $(this).parent();
+		//check parent class
+		if (!parent.hasClass('editMode')) {
+			parent.addClass('editMode');
+		}else if (parent.hasClass('editMode')) {	
+			//grab value entered in input and set as label
+			var editTask = $(this).prev('input[type="text"]').val();
+			var editLabel = parent.find('label');
+			editLabel.html(editTask);
+			//remove edit class
+			parent.removeClass('editMode');
+		};
 
+	  });
+
+   });  
+   
     
 </script>
 </head>
@@ -188,15 +211,15 @@ li > .delete:hover {
        
        <h3>Todo</h3>
         <ul id="incomplete-tasks">
-        <li><input type="checkbox" class="done"><label>Pay Bills</label>
+        <li><input type="checkbox" class="done"><label>Read Java</label>
+        <input type="text" value="Read Java">
+        <button class="edit">Edit</button>
+        <button class="delete">Delete</button></li>
             
-            <button class="edit">Edit</button>
+            <li><input type="checkbox" class="done"><label>Go Shopping</label>
+            <input type="text" value="Go Shopping"><button class="edit">Edit</button>
             <button class="delete">Delete</button></li>
-            
-        <li class="editMode"><input type="checkbox" class="done"><label>Go Shopping</label>
-            
-            <button class="edit">Edit</button>
-            <button class="delete">Delete</button></li>
+        
         
       </ul>
       
