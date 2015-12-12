@@ -32,7 +32,7 @@ li, h3 {
         h2{
 font-family:"Times New Roman", Times, serif;
             font-size:24px}
-         h4{
+         h4,small{
 font-family:"Times New Roman", Times, serif;
             }
 input, button {
@@ -50,6 +50,12 @@ button {
 }
 button:hover {
   color: #333;
+}
+.warning{
+  color:#FF0000;
+}
+.success{
+  color: #4DB84D;
 }
 /* Heading */
 h3{
@@ -89,6 +95,13 @@ li > .delete:hover {
 }
 
 
+/* Completed */
+#completed-tasks label {
+  text-decoration: line-through;
+  color: #888;
+}
+
+
 
 </style>
 <script type="text/javascript">
@@ -97,10 +110,24 @@ li > .delete:hover {
     function addListItem()
     {	
         var text=$("#new-task").val();
+        //check for empty value
+		    if(text==='') {
+			  //show alert message
+		  	$('.warning').html('<i class="fa fa-warning"></i> No task added').show();
+			  //hide success message
+		  	$('.success').hide();
+	    	}
+        else{
+			  //show success message
+		  	$('.success').html('<i class="fa fa-check"></i>Task added to list').fadeIn('slow').delay(500).fadeOut();
+		  	//hide warning
+		  	$('.warning').hide();
          $("#incomplete-tasks").append('<li ><input type="checkbox" class="done"/ ><label>' + text + ' </label><button class="edit">Edit</button><button class="delete">Delete</button></li>');
-			$("#new-task").val('');
+		  	$("#new-task").val('');
+          
+        }
 
-    }
+        }
     $(document).on('click','#add',addListItem);
 		
     function deleteItem(){
@@ -109,26 +136,26 @@ li > .delete:hover {
     
     $(document).on('click','.delete',deleteItem);
     
-    function completed() {
-    if
-    ($(this).parent().css('textDecoration') == 'line-through' )
+  function completed() {
+    if ( $(this).parent().css('textDecoration') == 'line-through' )
     {
-         $(this).parent().css('textDecoration', 'none');
-         $(this).parent().css('opacity', '1');
+        $(this).parent().css('textDecoration', 'none');
+        $(this).parent().css('opacity', '1');
     }
-
     else
-
     {
-         $(this).parent().css('textDecoration', 'line-through');
-         $(this).parent().css('opacity', '0.50');
+        $(this).parent().css('textDecoration', 'line-through');
+        $(this).parent().css('opacity', '0.50');
     }
-
-    }
-      	
+}
+    
+    
+    
    $(document).on('click','.done',completed);
          
-     
+       function reset() {
+         document.getElementById("new-task").reset();
+         }
     
      
 // function addTask(){
@@ -145,7 +172,7 @@ li > .delete:hover {
     <body>
         <div class="container">
           <div class="header">
-            <h2><center>Do Work List</center></h2>
+            <h2><center>To Do List</center></h2>
             <small><center>be better than yesterday</center></small>
           </div><br><br>
         <div class="form-group">
@@ -155,7 +182,9 @@ li > .delete:hover {
          
       
        <button type="submit" class="btn btn-primary" id="add">ADD</button> 
-       <button type="submit" class="btn btn-primary" id="clrc">Clear</button> 
+       <button type="submit" class="btn btn-primary" id="clrc" onclick="reset()">Clear</button> 
+       <div class="warning"></div>
+        <div class="success"></div>
        
        <h3>Todo</h3>
         <ul id="incomplete-tasks">
@@ -170,6 +199,13 @@ li > .delete:hover {
             <button class="delete">Delete</button></li>
         
       </ul>
+      
+       <h3>Completed</h3>
+      <ul id="completed-tasks">
+        <li><input type="checkbox" checked><label>See the Doctor</label>
+        <button class="edit">Edit</button><button class="delete">Delete</button></li>
+      </ul>
+    </div>
      
       </div>   
     </body>
