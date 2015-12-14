@@ -12,10 +12,10 @@ few small code are tested here to learn javascript technology.
  - FibonacciJs.html - find Fibonacci series
  
 ```
- 
+
 ## Supports
--[JavaScript Tutorial](http://www.w3schools.com/js/)
--[Learn JavaScript](http://www.tutorialspoint.com/javascript/)
--[Head First jQuery - Ryan Benedetti & Ronan Cranley](http://cdn.oreillystatic.com/oreilly/booksamplers/9781449393212_sampler.pdf)
+- [JavaScript Tutorial](http://www.w3schools.com/js/)
+- [Learn JavaScript](http://www.tutorialspoint.com/javascript/)
+- [Head First jQuery - Ryan Benedetti & Ronan Cranley](http://cdn.oreillystatic.com/oreilly/booksamplers/9781449393212_sampler.pdf)
 
 
