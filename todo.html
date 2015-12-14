@@ -12,11 +12,14 @@ body {
   background: #fff;
   color: #333;
   font-family: Lato, sans-serif;
+  height:500px;
+  margin-top: 25px;
+ 
 }
 .container {
   display: block;
   width: 500px;
-  margin: 100px auto 0;
+  height:500px;
 }
     
 ul {
@@ -32,7 +35,9 @@ li, h3 {
 }
 h2{
 font-family:"Times New Roman", Times, serif;
-            font-size:24px}
+            font-size:24px;
+  margin-top: 0px;
+}
 h4,small{
 font-family:"Times New Roman", Times, serif;
             }
@@ -77,7 +82,7 @@ h3{
 /* Task list */
 li {
   overflow: hidden;
-  padding: 20px 0;
+  padding: 10px 0;
   border-bottom: 1px solid #eee;
 }
 li > input[type="checkbox"] {
@@ -122,6 +127,8 @@ ul li.editMode label {
 
 </style>
 <script type="text/javascript">
+
+  /* add task */
     
    function addListItem()
     {	
@@ -144,14 +151,18 @@ ul li.editMode label {
         }
 
         }
+    /* call back for adding */    
     $(document).on('click','#add',addListItem);
 		
+		/* delete and callback for it */
     function deleteItem(){
         $(this).parent().remove();
     }
     
     $(document).on('click','.delete',deleteItem);
     
+   
+  /* iscomplete checking */  
   function completed() {
     if ( $(this).parent().css('textDecoration') == 'line-through' )
     {
@@ -163,16 +174,10 @@ ul li.editMode label {
         $(this).parent().css('textDecoration', 'line-through');
         $(this).parent().css('opacity', '0.50');
     }
-}
+  }
+     $(document).on('click','.done',completed);
     
-    
-    
-   $(document).on('click','.done',completed);
-         
-       function reset() {
-         document.getElementById("new-task").reset();
-   }
-    
+   /*edit task*/
    $(document).ready(function(){
      $('ul').on('click', '.edit',function editItem(){
 		//get parent
@@ -191,7 +196,14 @@ ul li.editMode label {
 
 	  });
 
-   });  
+   });
+   
+   /* delete and callback for it */
+    function removeItem(){
+        $(this).parent().remove();
+    }
+    
+    $(document).on('click','.btn',removeItem);
    
     
 </script>
@@ -204,12 +216,13 @@ ul li.editMode label {
           </div><br><br>
         <div class="form-group">
             <label for="new-task"><h4>Include Task</h4></label>
-            <input type="text" class="form-control" id="new-task" placeholder="Add Task">
-       </div>
-         
+            <input type="text" class="form-control" id="new-task" placeholder="Add Task" size="5">
       
-       <button type="submit" class="btn btn-primary" id="add">ADD</button> 
-       <button type="submit" class="btn btn-primary" id="clrc" onclick="reset()">Clear</button> 
+         
+      <button type="submit" class="btn btn-primary" id="add">
+      <span class="glyphicon glyphicon-plus"></span></button> </div>
+        
+       
        <div class="warning"></div>
         <div class="success"></div>
        
@@ -229,8 +242,10 @@ ul li.editMode label {
       
        <h3>Completed</h3>
       <ul id="completed-tasks">
-        <li><input type="checkbox" checked><label>See the Doctor</label>
-        <button class="edit">Edit</button><button class="delete">Delete</button></li>
+        <li><input type="checkbox" class="done"><label>See the Doctor</label>
+        <button class="btn btn-danger">
+        <span class="glyphicon glyphicon-remove"></span>
+        </button></li>
       </ul>
     </div>
      
